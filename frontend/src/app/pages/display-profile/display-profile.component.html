@@ -1,1 +1,25 @@
-<p>display-profile works!</p>
+<div>
+  <div class="mx-auto px-[5vw] py-10 max-w-screen-2xl">
+    <h2 class="text-2xl font-semibold my-4">Users Profile</h2>
+    <div
+      class="flex gap-8 flex-wrap justify-center items-center"
+      *ngIf="users$ | async as users"
+    >
+      <div
+        class="flex p-4 gap-4 justify-center items-center rounded-2xl shadow1"
+        *ngFor="let user of users"
+      >
+        <div class="min-w-[100px] max-w-[200px]">
+          <img class="rounded-full" src="assets/user.png" alt="img" />
+        </div>
+        <div class="text-gray-500">
+          <p class=" text-xl font-semibold -mb-2 text-red-700">{{ user.name }}</p>
+          <div class="inline-block h-[2px] w-full rounded-full bg-black"></div>
+          <p><span class="text-black font-semibold">Numer :</span>{{ user.mobileNumber }}</p>
+          <p><span class="text-black font-semibold">Date Of Birth:</span> {{ user.dateOfBirth }}</p>
+          <p><span class="text-black font-semibold">Email</span> {{ user.email }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

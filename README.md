@@ -7,13 +7,14 @@ To get started, follow these steps:
 1. Clone this repository to your local machine.
 
 ```bash
-git clone https://github.com/haroonsaifi17/SignupPage_Assignment.git && cd SignupPage_Assignment
+git clone https://github.com/haroonsaifi17/SignupPage_Assignment.git
+cd SignupPage_Assignment
 ```
 
 2. Install project dependencies using npm
 
 ```bash
-npm install && npm run install
+npm install
 ```
 
 ## Usage

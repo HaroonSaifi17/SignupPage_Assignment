@@ -1,23 +1,38 @@
 <div>
-  <div class="max-w-screen-2xl mx-auto p-4">
-    <h2 class="font-semibold text-3xl mb-4 my-12 text-center">
-      Signup
-    </h2>
+  <div class="max-w-screen-2xl mx-auto px-[5vw] py-10">
     <div class="flex justify-center items-center gap-16 max-md:flex-col gap-y-6">
       <div class="max-w-[400px]">
-      <img src="assets/newForm.svg" class="w-full" alt="" />
+        <h2 class="font-semibold text-5xl pb-8 text-center">Signup</h2>
+        <img src="assets/newForm.svg" class="w-full" alt="img" />
       </div>
-      <form (ngSubmit)="onSubmit(profileForm)" class="max-w-[400px]" #profileForm="ngForm">
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="max-w-[400px]" ngNativeValidate>
         <label for="name">Name</label>
-        <input [(ngModel)]="name" class="w-full bg-gray-100 rounded-sm p-3" type="text" name="name" placeholder="Name"
-          (input)="nameValid()" />
+        <input required [(ngModel)]="name" class="w-full bg-gray-100 rounded-sm p-3" type="text" name="name"
+          placeholder="Abhisek Gupta" (input)="nameValid()" />
         <p class="mb-4 text-red-600">{{ nameError }}</p>
-        <label for="phoneNumber">Phone Number</label>
-        <input [(ngModel)]="phoneNumber" class="w-full bg-gray-100 rounded-sm p-3" type="number" name="phoneNumber"
-          (input)="phoneNumberValid()" placeholder="Phone Number" />
-        <p class="mb-6 text-red-600">{{ phoneNumberError }}</p>
-        <button type="submit" class="p-3 text-white w-full bg-blue-500 hover:bg-blue-600 mt-10 rounded-md">
-          Continue
+        <label for="mobileNumber">Mobile Number</label>
+        <input required [(ngModel)]="mobileNumber" class="w-full bg-gray-100 rounded-sm p-3" type="number"
+          name="mobileNumber" (input)="mobileNumberValid()" placeholder="999988XXXX" />
+        <p class="mb-6 text-red-600">{{ mobileNumberError }}</p>
+        <label for="email">Email</label>
+        <input required [(ngModel)]="email" class="w-full bg-gray-100 rounded-sm p-3" type="text" name="email"
+          (input)="emailValid()" placeholder="example@gmail.com" />
+        <p class="mb-6 text-red-600">{{ emailError }}</p>
+        <label for="password">Passsword</label>
+        <input required [(ngModel)]="password" class="w-full bg-gray-100 rounded-sm p-3" type="password" name="password"
+          (input)="passwordValid()" placeholder="SecretPasssword" />
+        <p class="mb-6 text-red-600">{{ passwordError }}</p>
+        <label for="dateOfBirth">Date Of Birth</label>
+        <div class="relative">
+          <div *ngIf="!dateOfBirth" class="absolute text-gray-400 top-0 left-0 p-3 z-10 pointer-events-none">
+            DD/MM/YYYY
+          </div>
+          <input required [(ngModel)]="dateOfBirth" class="w-full bg-gray-100 rounded-sm p-3" type="date"
+            name="dateOfBirth" (input)="dateOfBirthValid()" />
+          <p class="mb-6 text-red-600">{{ dateOfBirthError }}</p>
+        </div>
+        <button type="submit" class="p-3 text-white w-full bg-blue-500 hover:bg-blue-600 mt-6 rounded-md">
+          Submit
         </button>
       </form>
     </div>

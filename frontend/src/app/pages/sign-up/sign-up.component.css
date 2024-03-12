@@ -1,0 +1,3 @@
+input[type="date"]:not(:valid):before {
+  content: attr(placeholder);
+}

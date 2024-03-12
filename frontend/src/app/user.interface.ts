@@ -1,4 +1,7 @@
 export interface User {
   name:string
-  moblieNumber:String
+  mobileNumber:string
+  email:string
+  password:string
+  dateOfBirth:string
 }

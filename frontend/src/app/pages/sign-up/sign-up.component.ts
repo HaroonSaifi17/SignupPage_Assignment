@@ -14,19 +14,24 @@ import { ApiService } from '../../api.service';
 export class SignUpComponent {
   public name: string = '';
   public nameError: string = '';
-  public phoneNumber: number | undefined;
-  public phoneNumberError: string = '';
+  public mobileNumber: number | undefined;
+  public mobileNumberError: string = '';
+  public dateOfBirth: string = '';
+  public dateOfBirthError: string = '';
+  public email: string = '';
+  public emailError: string = '';
+  public password: string = '';
+  public passwordError: string = '';
   public valid: boolean = false;
-  constructor(private router: Router, private api: ApiService) {}
+  constructor(
+    private router: Router,
+    private api: ApiService,
+  ) {}
 
   ngOnInit(): void {}
   nameValid(): void {
     const trimmedName = this.name.trim();
-
-    if (trimmedName === '') {
-      this.nameError = 'Please enter a valid name';
-      this.valid = false;
-    } else if (!/^[a-zA-Z\s]*$/.test(trimmedName)) {
+    if (!/^[a-zA-Z\s]*$/.test(trimmedName)) {
       this.nameError = 'Invalid characters in name';
       this.valid = false;
     } else {
@@ -34,34 +39,71 @@ export class SignUpComponent {
       this.valid = true;
     }
   }
-  phoneNumberValid(): void {
-    const phoneNumber = this.phoneNumber;
-
-    if (!phoneNumber) {
-      this.phoneNumberError = 'Please enter a valid phone number';
-      this.valid = false;
-    } else if (!/^\d{10}$/.test(phoneNumber.toString())) {
-      this.phoneNumberError =
-        'Invalid phone number format. Must be 10 digits long.';
+  mobileNumberValid(): void {
+    const mobileNumber = this.mobileNumber;
+    if (!/^\d{10}$/.test(mobileNumber!.toString())) {
+      this.mobileNumberError = 'Must be 10 digits long.';
       this.valid = false;
     } else {
-      this.phoneNumberError = '';
+      this.mobileNumberError = '';
+      this.valid = true;
+    }
+  }
+
+  emailValid(): void {
+    const trimmedEmail = this.email.trim();
+    if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(trimmedEmail)) {
+      this.emailError = 'Invalid email format';
+      this.valid = false;
+    } else {
+      this.emailError = '';
+      this.valid = true;
+    }
+  }
+
+  dateOfBirthValid(): void {
+    const dobString = this.dateOfBirth;
+    const dob = new Date(dobString);
+    const currentDate = new Date();
+    if (!dobString || isNaN(dob.getTime()) || dob >= currentDate) {
+      this.dateOfBirthError = 'Invalid date of birth';
+      this.valid = false;
+    } else {
+      this.dateOfBirthError = '';
+      this.valid = true;
+    }
+  }
+
+  passwordValid(): void {
+    const password = this.password;
+    if (!password || password.length < 8) {
+      this.passwordError = 'Password must be at least 8 characters long';
+      this.valid = false;
+    } else {
+      this.passwordError = '';
       this.valid = true;
     }
   }
 
   onSubmit(form: NgForm): void {
-    if (this.valid && this.name !== ' ' && this.phoneNumber !== undefined) {
+    if (
+      this.valid &&
+      this.name !== ' ' &&
+      this.mobileNumber !== undefined &&
+      this.dateOfBirth !== '' &&
+      this.email !== '' &&
+      this.password !== ''
+    ) {
       this.api.newUserPost(form.value).subscribe(
         (response) => {
           this.router.navigate(['/profile']);
         },
         (error) => {
           console.error('Error updating data:', error);
-        }
+        },
       );
     } else {
-      this.phoneNumberValid();
+      this.mobileNumberValid();
       this.nameValid();
     }
   }
