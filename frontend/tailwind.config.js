@@ -4,7 +4,6 @@ module.exports = {
     "./src/app/*.{html,ts}",
     "./src/app/pages/**/*.{html,ts}",
     "./src/app/pages/**/**/*.{html,ts}",
-    "./src/app/pages/**/**/**/*.{html,ts}"
   ],
   theme: {
     extend: {
