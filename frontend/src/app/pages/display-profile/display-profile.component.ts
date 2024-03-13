@@ -3,11 +3,12 @@ import { Observable } from 'rxjs';
 import { User } from '../../user.interface';
 import { ApiService } from '../../api.service';
 import { CommonModule } from '@angular/common';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @Component({
   selector: 'app-display-profile',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule ,NavbarComponent],
   templateUrl: './display-profile.component.html',
   styleUrl: './display-profile.component.css',
 })

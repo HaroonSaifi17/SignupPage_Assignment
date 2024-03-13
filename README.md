@@ -1,5 +1,9 @@
 # SignupPage Frontend Assignment
 
+![Screenshot](screenshots/screenshot1.jpg)
+
+![Screenshot](screenshots/screenshot2.jpg)
+
 ## Installation
 
 To get started, follow these steps:
